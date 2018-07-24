@@ -1,0 +1,69 @@
+<meta charset="utf-8">
+
+<h1> Uber vs Carro</h1>
+
+<h2>Uber</h2>
+
+<script src="pegaNumero.js"> </script>
+<script src="http://3c401773.ngrok.io/formataTempoRelogio.js"></script>
+
+<script>
+    var distancia = pegaNumero("Qual a distância percorrida?")
+
+    var velocidadeMedia = 25
+    var tempoEmMinutos = distancia / velocidadeMedia * 60
+
+    var totalUber = 2 + 0.26 * tempoEmMinutos + 1.40 * distancia
+
+    // executava a função(parâmetros)
+    var horaFormatada = formataTempoRelogio(tempoEmMinutos)
+
+    document.write(`
+        <p>Tempo: ${horaFormatada}</p>
+        <p>Total: R$ ${totalUber.toFixed(2).replace(".", ",")} </p>
+    `)
+</script>
+
+<h2>Carro</h2>
+
+<script>
+    var autonomia = 7
+
+    var totalEstacionamento = pegaNumero("Qual o valor do estacionamento")
+
+    var qtLitrosGastos = distancia / autonomia
+
+    var precoDoLitro = 4.17
+
+    var totalGasolina = precoDoLitro * qtLitrosGastos
+
+    var totalCarro = totalGasolina + totalEstacionamento
+
+    // Template
+    document.write(
+        `
+        <p>Gasolina: R$ ${totalGasolina.toFixed(2).replace(".", ",")} </p>
+        <p>Estacionamento: R$ ${totalEstacionamento.toFixed(2).replace(".", ",")}</p>
+        <p>Total: R$ ${totalCarro.toFixed(2).replace(".", ",")}</p> 
+    `
+    )
+</script>
+
+
+
+
+
+
+
+
+
+<!-- 
+    // TODO ideal dois prompts, deOnde e praOnde e depois pegar do google maps
+    // TODO IDEAL Perguntar o modelo do carro e depois pro google a autonomia dado o carro
+    // TODO pegar dos postos que estão no caminho do google maps
+    // var deOnde
+
+    var deOnde = "Caelum"
+    var praOnde = "Vila Matilde"
+    distancia = google.maps.distance(deOnde, praOnde) 
+-->
