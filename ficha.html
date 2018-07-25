@@ -1,0 +1,36 @@
+<h1>
+    Cadastro da Academia
+</h1>
+
+<script src="pegaN  umero.js"></script>
+<!-- Library // Biblioteca -->
+<!-- https://bit.ly/2uhtK1r -->
+<script src="https://rawgit.com/caelum/projeto01/loteriaVariosNumeros--for/apostilaIgnore/libIdade.js"></script>
+
+<script>
+    var nome = prompt("Qual o nome da pessoa")
+    var peso = pegaNumero("Qual o peso")
+    var altura = pegaNumero("Qual a altura")
+    var dataNascimento = prompt("Qual a data de nascimento")
+
+    // var diaMesAno = ["19", "06", "1993"]
+    var diaMesAno = dataNascimento.split("/")
+
+    var dia = diaMesAno[0]
+    var mes = diaMesAno[1]
+    var ano = diaMesAno[2]
+
+    var idade = calculaIdade(dia, mes, ano)
+    
+    // TODO função calculaIMC
+    var imc = peso / (altura * altura)
+
+    document.write(`
+        <p>Nome: ${nome}</p>
+        <p>Peso: ${peso.toFixed(2).replace(".", ",")} kg</p>
+        <p>Altura: ${altura.toFixed(2).replace(".", ",")} m</p>
+        <p>IMC: ${imc.toFixed(2).replace(".", ",")}</p>
+        <p>Data de Nascimento: ${dataNascimento}</p>
+        <p>Idade: ${idade}</p>
+    `)
+</script>
