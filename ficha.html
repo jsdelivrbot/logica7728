@@ -11,6 +11,9 @@ Altura: <input id="inputAltura" value="1,80">
 Data de Nascimento: <input id="inputDataNascimento" value="19/06/1993">
 <br><br>
 
+<input id="inputCardiaco" type="checkbox"> Tem problema cardíaco
+<br><br>
+
 <button onclick="cadastrarFicha()">
     Ok
 </button>
@@ -42,6 +45,16 @@ Data de Nascimento: <input id="inputDataNascimento" value="19/06/1993">
         // TODO função calculaIMC
         var imc = peso / (altura * altura)
 
+        // Valor booleano (true ou false)
+        var ehCardiaca = inputCardiaco.checked
+
+        if(ehCardiaca){
+            var fraseAcompanhamentoMedico = "Precisa de acompanhamento médico"
+        }
+        if(!ehCardiaca){
+            var fraseAcompanhamentoMedico = "NÃO precisa de acompanhamento médico"
+        }
+
         mostra(`
             <hr>
             <p>Nome: ${nome}</p>
@@ -50,6 +63,7 @@ Data de Nascimento: <input id="inputDataNascimento" value="19/06/1993">
             <p>IMC: ${imc.toFixed(2).replace(".", ",")}</p>
             <p>Data de Nascimento: ${dataNascimento}</p>
             <p>Idade: ${idade}</p>
+            <p>${fraseAcompanhamentoMedico}</p>
         `)
     }
 </script>
