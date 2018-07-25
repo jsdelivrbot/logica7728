@@ -2,35 +2,54 @@
     Cadastro da Academia
 </h1>
 
-<script src="pegaN  umero.js"></script>
+Nome: <input id="inputNome">
+<br><br>
+Peso: <input id="inputPeso">
+<br><br>
+Altura: <input id="inputAltura">
+<br><br>
+Data de Nascimento: <input id="inputDataNascimento">
+<br><br>
+
+<button onclick="cadastrarFicha()">
+    Ok
+</button>
 <!-- Library // Biblioteca -->
-<!-- https://bit.ly/2uhtK1r -->
+<!-- mostra.js => https://bit.ly/2meWu6g-->
+<script src="https://rawgit.com/caelum/projeto01/loteriaVariosNumeros--for/apostilaIgnore/mostra.js"></script>
+<!-- libBrasil.js => https://bit.ly/2NMVOSw  -->
+<script src="https://rawgit.com/caelum/projeto01/loteriaVariosNumeros--for/apostilaIgnore/libBrasil.js"></script>
+<!-- libIdade.js => https://bit.ly/2uhtK1r -->
 <script src="https://rawgit.com/caelum/projeto01/loteriaVariosNumeros--for/apostilaIgnore/libIdade.js"></script>
 
 <script>
-    var nome = prompt("Qual o nome da pessoa")
-    var peso = pegaNumero("Qual o peso")
-    var altura = pegaNumero("Qual a altura")
-    var dataNascimento = prompt("Qual a data de nascimento")
+    function cadastrarFicha(){
 
-    // var diaMesAno = ["19", "06", "1993"]
-    var diaMesAno = dataNascimento.split("/")
+        var nome = inputNome.value
+        var peso = parseFloatBrasil(inputPeso.value)
+        var altura = parseFloatBrasil(inputAltura.value)
+        var dataNascimento = inputDataNascimento.value
 
-    var dia = diaMesAno[0]
-    var mes = diaMesAno[1]
-    var ano = diaMesAno[2]
+        // var diaMesAno = ["19", "06", "1993"]
+        var diaMesAno = dataNascimento.split("/")
 
-    var idade = calculaIdade(dia, mes, ano)
-    
-    // TODO função calculaIMC
-    var imc = peso / (altura * altura)
+        var dia = diaMesAno[0]
+        var mes = diaMesAno[1]
+        var ano = diaMesAno[2]
 
-    document.write(`
-        <p>Nome: ${nome}</p>
-        <p>Peso: ${peso.toFixed(2).replace(".", ",")} kg</p>
-        <p>Altura: ${altura.toFixed(2).replace(".", ",")} m</p>
-        <p>IMC: ${imc.toFixed(2).replace(".", ",")}</p>
-        <p>Data de Nascimento: ${dataNascimento}</p>
-        <p>Idade: ${idade}</p>
-    `)
+        var idade = calculaIdade(dia, mes, ano)
+        
+        // TODO função calculaIMC
+        var imc = peso / (altura * altura)
+
+        mostra(`
+            <hr>
+            <p>Nome: ${nome}</p>
+            <p>Peso: ${peso.toFixed(2).replace(".", ",")} kg</p>
+            <p>Altura: ${altura.toFixed(2).replace(".", ",")} m</p>
+            <p>IMC: ${imc.toFixed(2).replace(".", ",")}</p>
+            <p>Data de Nascimento: ${dataNascimento}</p>
+            <p>Idade: ${idade}</p>
+        `)
+    }
 </script>
