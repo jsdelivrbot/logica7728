@@ -1,0 +1,23 @@
+<meta charset="utf-8">
+<h1>Jogo de Adivinhar</h1>
+
+<button onclick="jogar()">Iniciar</button>
+
+<script src="pegaNumero.js"></script>
+<script src="https://rawgit.com/caelum/projeto01/loteriaVariosNumeros--for/apostilaIgnore/mostra.js"></script>
+
+<script>
+function jogar(){
+    var numeroMisterioso = pegaNumero("Digite um nº para ser adivinhado")
+    var chute = pegaNumero("Chute o nº")
+
+    var ganhou = numeroMisterioso == chute
+
+    if(ganhou){
+        mostra(`Vc ganhou`)
+    }
+    if(!ganhou){
+        mostra(`Vc perdeu`)
+    }
+}
+</script>
