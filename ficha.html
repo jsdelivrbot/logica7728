@@ -8,7 +8,7 @@ Peso: <input id="inputPeso" value="74">
 <br><br>
 Altura: <input id="inputAltura" value="1,80">
 <br><br>
-Data de Nascimento: <input id="inputDataNascimento" value="19/06/1993">
+Data de Nascimento: <input id="inputDataNascimento" value="19/06/1993" type="date">
 <br><br>
 
 <input id="inputCardiaco" type="checkbox"> Tem problema cardíaco
@@ -17,6 +17,9 @@ Data de Nascimento: <input id="inputDataNascimento" value="19/06/1993">
 <button onclick="cadastrarFicha()">
     Ok
 </button>
+
+
+
 <!-- Library // Biblioteca -->
 <!-- mostra.js => https://bit.ly/2meWu6g-->
 <script src="https://rawgit.com/caelum/projeto01/loteriaVariosNumeros--for/apostilaIgnore/mostra.js"></script>
@@ -26,7 +29,11 @@ Data de Nascimento: <input id="inputDataNascimento" value="19/06/1993">
 <script src="https://rawgit.com/caelum/projeto01/loteriaVariosNumeros--for/apostilaIgnore/libIdade.js"></script>
 
 <script>
+    var numeroFicha = 0
+
     function cadastrarFicha(){
+        // contador
+        numeroFicha = numeroFicha + 1
 
         var nome = inputNome.value
         var peso = parseFloatBrasil(inputPeso.value)
@@ -34,11 +41,11 @@ Data de Nascimento: <input id="inputDataNascimento" value="19/06/1993">
         var dataNascimento = inputDataNascimento.value
 
         // var diaMesAno = ["19", "06", "1993"]
-        var diaMesAno = dataNascimento.split("/")
+        var diaMesAno = dataNascimento.split("-")
 
-        var dia = diaMesAno[0]
+        var dia = diaMesAno[2]
         var mes = diaMesAno[1]
-        var ano = diaMesAno[2]
+        var ano = diaMesAno[0]
 
         var idade = calculaIdade(dia, mes, ano)
         
@@ -47,15 +54,26 @@ Data de Nascimento: <input id="inputDataNascimento" value="19/06/1993">
 
         // Valor booleano (true ou false)
         var ehCardiaca = inputCardiaco.checked
+        var ehCrianca = idade < 16
+        
 
-        if(ehCardiaca){
+        if(ehCardiaca || ehCrianca){
             var fraseAcompanhamentoMedico = "Precisa de acompanhamento médico"
         }
-        if(!ehCardiaca){
+        if(!ehCardiaca && !ehCrianca){
             var fraseAcompanhamentoMedico = "NÃO precisa de acompanhamento médico"
+        }
+        if(ehCardiaca && ehCrianca) {
+            var fraseAcompanhamentoMedico = "POR FAVOR não faça academia"
+        }
+
+        if(numeroFicha == 1){
+            mostra(`<h1>Fichas Cadastradas</h1>`)   
         }
 
         mostra(`
+            <hr>
+            FICHA ${numeroFicha}
             <hr>
             <p>Nome: ${nome}</p>
             <p>Peso: ${peso.toFixed(2).replace(".", ",")} kg</p>
