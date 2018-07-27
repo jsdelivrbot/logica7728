@@ -1,0 +1,44 @@
+<meta charset="utf-8">
+<h1>Jogo de Adivinhar</h1>
+
+<button onclick="jogar()">Iniciar</button>
+
+<script src="pegaNumero.js"></script>
+<script src="https://rawgit.com/caelum/projeto01/loteriaVariosNumeros--for/apostilaIgnore/mostra.js"></script>
+
+<script>
+var numeroDoJogo = 0
+
+function jogar(){
+    
+    var listaMisteriosa = []
+
+    //sintaxe
+    // i = i + 1
+    for(var i = 0; i < 6; i++){
+        var numeroMisterioso = parseInt(Math.random() * 59 + 1)
+        listaMisteriosa.push(numeroMisterioso)
+    }
+
+    var chute = pegaNumero("Chute um nº de 1 a 60")
+
+    var contador = 0
+    while(contador < 3 && (chute <= 0 || chute > 60 || isNaN(chute))){
+        contador = contador + 1
+        var chute = pegaNumero("INVÁLIDO! Chute um nº de 1 a 60")
+    }
+
+    var ganhou = listaMisteriosa.includes(chute)
+
+    if(contador < 4){
+        numeroDoJogo = numeroDoJogo + 1
+    }
+
+    if(ganhou){
+        mostra(`Jogo ${numeroDoJogo} - Vc ganhou. O número misterioso era ${listaMisteriosa}`)
+    }
+    if(!ganhou && contador < 4){
+        mostra(`Jogo ${numeroDoJogo} - Vc perdeu. O número misterioso era ${listaMisteriosa}`)
+    }
+}
+</script>

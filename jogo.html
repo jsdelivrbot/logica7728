@@ -7,17 +7,21 @@
 <script src="https://rawgit.com/caelum/projeto01/loteriaVariosNumeros--for/apostilaIgnore/mostra.js"></script>
 
 <script>
+var numeroDoJogo = 0
+
 function jogar(){
     var numeroMisterioso = pegaNumero("Digite um nº para ser adivinhado")
     var chute = pegaNumero("Chute o nº")
 
     var ganhou = numeroMisterioso == chute
 
+    numeroDoJogo = numeroDoJogo + 1
+
     if(ganhou){
-        mostra(`Vc ganhou`)
+        mostra(`Jogo ${numeroDoJogo} - Vc ganhou. O número misterioso era ${numeroMisterioso}`)
     }
     if(!ganhou){
-        mostra(`Vc perdeu`)
+        mostra(`Jogo ${numeroDoJogo} - Vc perdeu. O número misterioso era ${numeroMisterioso}`)
     }
 }
 </script>
